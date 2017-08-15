@@ -81,12 +81,12 @@ body {
     .home-template .post-feed,
     .tag-template .post-feed,
     .author-template .post-feed {
-        margin-top: -110px;
+        margin-top: -70px;
+        padding-top: 0;
     }
     .home-template .site-nav {
         position: relative;
         top: -70px;
-        z-index: 300;
     }
 }
 
@@ -134,8 +134,6 @@ body {
 }
 
 .site-header-content {
-    position: relative;
-    z-index: 300;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -181,7 +179,7 @@ body {
 
 .site-nav {
     position: relative;
-    z-index: 100;
+    z-index: 300;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -215,6 +213,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     flex-shrink: 0;
     display: block;
     margin-right: 24px;
+    padding: 9px 0;
     color: #fff;
     font-size: 1.7rem;
     line-height: 1em;
@@ -359,9 +358,12 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 /* 6. Post Feed
 /* ---------------------------------------------------------- */
 
+.site-main {
+    z-index: 100;
+}
+
 .post-feed {
     position: relative;
-    z-index: 200;
     display: flex;
     flex-wrap: wrap;
     margin: 0 -20px;
@@ -390,6 +392,9 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 .post-card-image-link {
     position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
 }
 
 .post-card-image {
@@ -708,14 +713,35 @@ The first (most recent) post in the list is styled to be bigger than the others 
     }
 }
 
-/*
-If an image url has #full on the end, give it special wide styles.
+
+/* Full bleed images (#full)
 Super neat trick courtesy of @JoelDrapper
+
+Usage (In Ghost edtior):
+
+![img](/some/image.jpg#full)
+
 */
 .post-full-content img[src$="#full"] {
     width: 100vw;
     max-width: none;
 }
+
+
+/* Image captions
+
+Usage (In Ghost editor):
+
+![img](/some/image.jpg)
+<small>Your image caption</small>
+
+*/
+.post-full-content br + small {
+    display: block;
+    margin-top: -3em;
+    margin-bottom: 1.5em;
+}
+
 
 .post-full-content iframe {
     margin: 0 auto 1.5em;
@@ -740,7 +766,7 @@ Super neat trick courtesy of @JoelDrapper
 }
 
 @media (min-width: 1000px) {
-    .post-full-content blockquote {
+    .post-full-content blockquote:not(:first-of-type) {
         width: 100vw;
         max-width: 1060px;
     }
@@ -890,13 +916,14 @@ Super neat trick courtesy of @JoelDrapper
 
 /* Tables */
 .post-full-content table {
-    display: table;
-    width: 100%;
+    display: inline-block;
+    width: auto;
     max-width: 100%;
     overflow-x: auto;
     margin: 0.5em 0 2.5em;
     border-spacing: 0;
     border-collapse: collapse;
+    vertical-align: top;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 1.6rem;
     white-space: nowrap;
@@ -930,7 +957,7 @@ Super neat trick courtesy of @JoelDrapper
     letter-spacing: 0.2px;
     text-align: left;
     text-transform: uppercase;
-    background: color(var(--whitegrey) l(+4%));
+    background-color: color(var(--whitegrey) l(+4%));
 }
 
 .post-full-content table th,
@@ -938,16 +965,6 @@ Super neat trick courtesy of @JoelDrapper
     padding: 6px 12px;
     border: color(var(--whitegrey) l(-1%) s(-5%)) 1px solid;
 }
-
-@media (max-width: 800px) {
-    .post-full-content table {
-        display: inline-block;
-        width: auto;
-        max-width: 100%;
-        vertical-align: top;
-    }
-}
-
 
 
 /* 7.1. Subscribe Form
