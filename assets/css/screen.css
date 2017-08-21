@@ -432,7 +432,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     text-decoration: none;
 }
 
-.post-card-tags {
+.post-card-date {
     display: block;
     margin-bottom: 4px;
     color: var(--midgrey);
@@ -462,6 +462,12 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     padding: 0 25px 25px;
 }
 
+.post-card-meta svg {
+    height: 1.2rem;
+    margin-right: 0.3rem;
+    fill: gray;
+}
+
 .author-profile-image {
     width: 25px;
     height: 25px;
@@ -469,7 +475,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     border-radius: 100%;
 }
 
-.post-card-author {
+.post-card-tag {
     font-size: 1.3rem;
     font-weight: 500;
     letter-spacing: 0.5px;
