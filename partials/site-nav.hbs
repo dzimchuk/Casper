@@ -1,5 +1,12 @@
 <nav class="site-nav">
     <div class="site-nav-left">
+        {{^is "home"}}
+            {{#if @blog.logo}}
+                <a class="site-nav-logo hidden" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>
+            {{else}}
+                <a class="site-nav-logo hidden" href="{{@blog.url}}">{{@blog.title}}</a>
+            {{/if}}
+        {{/is}}
         {{#if @blog.navigation}}
             {{navigation}}
         {{/if}}
