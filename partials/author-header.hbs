@@ -1,0 +1,25 @@
+{{#author}}
+{{!-- Everything inside the #author tags pulls data from the author --}}
+<header class="site-header outer {{#if cover_image}}" style="background-image: url({{cover_image}}){{else}}no-cover{{/if}}">
+    <div class="inner">
+        {{> "site-nav"}}
+        <div class="site-header-content">
+            {{#if profile_image}}
+                <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
+            {{/if}}
+            <h1 class="site-title">{{name}}</h1>
+            {{#if bio}}
+                <h2 class="author-bio">{{bio}}</h2>
+            {{/if}}
+            <div class="author-meta">
+                {{#if location}}
+                    <div class="author-location">{{location}} <span class="bull">&bull;</span></div>
+                {{/if}}
+                {{#if website}}
+                    <a class="social-link social-link-wb" href="{{website}}" target="_blank">{{> "icons/website"}}</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</header>
+{{/author}}
