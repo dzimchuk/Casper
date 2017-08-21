@@ -31,9 +31,10 @@
                 <section class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}}</section>
                 <nav class="site-footer-nav">
                     <a href="{{@blog.url}}">Latest Posts</a>
+                    <a class="social-link-github" href="https://github.com/" target="_blank">GitHub</a>
                     {{#if @blog.facebook}}<a href="{{facebook_url @blog.facebook}}" target="_blank">Facebook</a>{{/if}}
                     {{#if @blog.twitter}}<a href="{{twitter_url @blog.twitter}}" target="_blank">Twitter</a>{{/if}}
-                    <a href="https://ghost.org" target="_blank">Ghost</a>
+                    <a class="social-link-linkedin" href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
                 </nav>
             </div>
         </footer>
@@ -69,6 +70,11 @@
     </script>
     <script src="{{asset "js/infinitescroll.js"}}"></script>
     {{/if}}
+
+    <script>
+        if (typeof github_url !== 'undefined') { $('.social-link-github').removeClass('hidden'); $('.social-link-github').attr('href', github_url); }
+        if (typeof linkedin_url !== 'undefined') { $('.social-link-linkedin').removeClass('hidden'); $('.social-link-linkedin').attr('href', linkedin_url); }
+    </script>
 
     {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
     {{{block "scripts"}}}
