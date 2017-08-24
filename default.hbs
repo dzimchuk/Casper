@@ -62,19 +62,14 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
 
     {{#if pagination.pages}}
     <script>
         var maxPages = parseInt('{{pagination.pages}}');
     </script>
-    <script src="{{asset "js/infinitescroll.js"}}"></script>
     {{/if}}
 
-    <script>
-        if (typeof github_url !== 'undefined') { $('.social-link-github').removeClass('hidden'); $('.social-link-github').attr('href', github_url); }
-        if (typeof linkedin_url !== 'undefined') { $('.social-link-linkedin').removeClass('hidden'); $('.social-link-linkedin').attr('href', linkedin_url); }
-    </script>
+    <script type="text/javascript" src="{{asset "built/theme.min.js"}}"></script>
 
     {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
     {{{block "scripts"}}}
