@@ -26,7 +26,7 @@ var nodemonServerInit = function () {
     livereload.listen(1234);
 };
 
-gulp.task('build', ['css', 'scripts'], function (/* cb */) {
+gulp.task('build', ['css', 'scripts_all', 'scripts'], function (/* cb */) {
     return nodemonServerInit();
 });
 
@@ -47,8 +47,15 @@ gulp.task('css', function () {
         .pipe(livereload());
 });
 
-gulp.task('scripts', function() {
+gulp.task('scripts_all', function() {
     return gulp.src(['assets/js/*.js'])
+        .pipe(uglify())
+        .pipe(concat('theme_all.min.js'))
+        .pipe(gulp.dest('assets/built/'));
+});
+
+gulp.task('scripts', function() {
+    return gulp.src(['assets/js/jquery.fitvids.js', 'assets/js/custom.js'])
         .pipe(uglify())
         .pipe(concat('theme.min.js'))
         .pipe(gulp.dest('assets/built/'));
@@ -56,7 +63,7 @@ gulp.task('scripts', function() {
 
 gulp.task('watch', function () {
     gulp.watch('assets/css/**', ['css']);
-    gulp.watch('assets/js/*.js', ['scripts']);
+    gulp.watch('assets/js/*.js', ['scripts_all', 'scripts']);
 });
 
 gulp.task('default', ['build'], function () {
